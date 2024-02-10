@@ -1,4 +1,4 @@
-package progressbar
+package progress
 
 import (
 	"github.com/k0kubun/go-ansi"
