@@ -1,6 +1,7 @@
 package progress
 
 import (
+	"fmt"
 	"github.com/k0kubun/go-ansi"
 	"github.com/schollz/progressbar/v3"
 	"time"
@@ -10,6 +11,9 @@ func NewProgressbar(max int64, description string) *progressbar.ProgressBar {
 	return progressbar.NewOptions64(max,
 		progressbar.OptionSetDescription(description),
 		progressbar.OptionSetWriter(ansi.NewAnsiStdout()),
+		progressbar.OptionOnCompletion(func() {
+			fmt.Fprint(ansi.NewAnsiStdout(), "\n")
+		}),
 		progressbar.OptionSetRenderBlankState(true),
 		progressbar.OptionEnableColorCodes(true),
 		progressbar.OptionSetWidth(15),
